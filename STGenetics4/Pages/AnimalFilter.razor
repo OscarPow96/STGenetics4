@@ -1,0 +1,16 @@
+﻿<!-- AnimalFilter.razor -->
+
+<input type="text" @bind="filterText" @oninput="OnFilterTextChanged" placeholder="Filter" />
+
+@code {
+    private string filterText;
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    private async Task OnFilterTextChanged(ChangeEventArgs e)
+    {
+        filterText = e.Value?.ToString();
+        await ValueChanged.InvokeAsync(filterText);
+    }
+}

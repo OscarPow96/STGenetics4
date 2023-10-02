@@ -1,0 +1,79 @@
+﻿@page "/animalgrid"
+@using STGenetics4.Pages
+@inject IAnimalService AnimalService
+
+<h3>Animal Grid</h3>
+
+<input type="text" placeholder="Filter by breed" @bind="filterBreed" @oninput="FilterAnimals" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Animal ID</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Birth Date</th>
+            <th>Sex</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (filteredAnimals != null)
+        {
+            @foreach (var animal in filteredAnimals)
+            {
+                <tr style="display: @(MatchesFilter(animal) ? "table-row" : "none")">                    
+                    <td>@animal.AnimalId</td>
+                    <td>@animal.Name</td>
+                    <td>@animal.Breed</td>
+                    <td>@animal.BirthDate.ToShortDateString()</td>
+                    <td>@animal.Sex</td>
+                    <td>@animal.Price</td>
+                    <td>@animal.Status</td>
+                    <td><input type="checkbox" @bind="animal.IsSelected" /></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Animal> animals = new List<Animal>();
+    private List<Animal> filteredAnimals = new List<Animal>();
+    private string filterBreed = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        animals = await AnimalService.GetAnimalsFromJson();
+        filteredAnimals = new List<Animal>(animals);
+    }
+
+    private bool MatchesFilter(Animal animal)
+    {
+        if (string.IsNullOrWhiteSpace(filterBreed))
+            return true;
+
+        return animal.Breed.Contains(filterBreed, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void ToggleSelection(bool selectedValue, Animal animal)
+    {
+        animal.IsSelected = selectedValue;
+    }
+
+    private void FilterAnimals()
+    {
+        if (!string.IsNullOrEmpty(filterBreed))
+        {
+            filteredAnimals = animals
+                .Where(a => a.Breed.Contains(filterBreed, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+        else
+        {
+            filteredAnimals = new List<Animal>(animals);
+        }
+    }
+}

@@ -1,0 +1,184 @@
+[
+  {
+    "AnimalId": 1,
+    "Name": "Lola",
+    "Breed": "Holstein",
+    "BirthDate": "2019-03-15",
+    "Sex": "Female",
+    "Price": 500.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 2,
+    "Name": "Molly",
+    "Breed": "Jersey",
+    "BirthDate": "2018-05-20",
+    "Sex": "Female",
+    "Price": 550.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 3,
+    "Name": "Bella",
+    "Breed": "Simmental",
+    "BirthDate": "2017-06-25",
+    "Sex": "Female",
+    "Price": 520.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 4,
+    "Name": "Rosie",
+    "Breed": "Charolais",
+    "BirthDate": "2019-08-12",
+    "Sex": "Female",
+    "Price": 510.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 5,
+    "Name": "Fernando",
+    "Breed": "Angus",
+    "BirthDate": "2018-04-17",
+    "Sex": "Male",
+    "Price": 600.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 6,
+    "Name": "Max",
+    "Breed": "Hereford",
+    "BirthDate": "2017-10-30",
+    "Sex": "Male",
+    "Price": 580.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 7,
+    "Name": "Chico",
+    "Breed": "Limousin",
+    "BirthDate": "2019-01-08",
+    "Sex": "Male",
+    "Price": 590.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 8,
+    "Name": "Billy",
+    "Breed": "Shorthorn",
+    "BirthDate": "2018-07-14",
+    "Sex": "Male",
+    "Price": 570.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 9,
+    "Name": "Sally",
+    "Breed": "Galloway",
+    "BirthDate": "2019-02-05",
+    "Sex": "Female",
+    "Price": 530.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 10,
+    "Name": "Daisy",
+    "Breed": "Brahman",
+    "BirthDate": "2018-06-20",
+    "Sex": "Female",
+    "Price": 540.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 11,
+    "Name": "Rocky",
+    "Breed": "Angus",
+    "BirthDate": "2019-03-01",
+    "Sex": "Male",
+    "Price": 610.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 12,
+    "Name": "Hank",
+    "Breed": "Hereford",
+    "BirthDate": "2017-12-20",
+    "Sex": "Male",
+    "Price": 590.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 13,
+    "Name": "Lucy",
+    "Breed": "Galloway",
+    "BirthDate": "2018-09-25",
+    "Sex": "Female",
+    "Price": 530.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 14,
+    "Name": "Maverick",
+    "Breed": "Limousin",
+    "BirthDate": "2019-07-12",
+    "Sex": "Male",
+    "Price": 580.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 15,
+    "Name": "Penelope",
+    "Breed": "Charolais",
+    "BirthDate": "2018-04-30",
+    "Sex": "Female",
+    "Price": 510.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 16,
+    "Name": "Bruno",
+    "Breed": "Brahman",
+    "BirthDate": "2017-10-15",
+    "Sex": "Male",
+    "Price": 600.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 17,
+    "Name": "Emma",
+    "Breed": "Holstein",
+    "BirthDate": "2019-01-05",
+    "Sex": "Female",
+    "Price": 500.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 18,
+    "Name": "Duke",
+    "Breed": "Shorthorn",
+    "BirthDate": "2018-05-10",
+    "Sex": "Male",
+    "Price": 570.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 19,
+    "Name": "Sophie",
+    "Breed": "Jersey",
+    "BirthDate": "2019-02-20",
+    "Sex": "Female",
+    "Price": 550.00,
+    "Status": "Active"
+  },
+  {
+    "AnimalId": 20,
+    "Name": "Oscar",
+    "Breed": "Simmental",
+    "BirthDate": "2018-08-10",
+    "Sex": "Male",
+    "Price": 590.00,
+    "Status": "Active"
+  }
+]
+
+

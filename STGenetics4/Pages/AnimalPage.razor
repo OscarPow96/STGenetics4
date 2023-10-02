@@ -1,0 +1,94 @@
+﻿@page "/animal-page"
+@using STGenetics.Shared.Models
+@using System.Linq
+@using STGenetics4.Pages
+@inject IAnimalService AnimalService
+
+<h3>Animal Page</h3>
+
+<!-- Include the AnimalList component -->
+
+<AnimalList />
+
+<!-- Include the AnimalForm component -->
+<AnimalForm />
+
+<!-- Include the AnimalGrid component -->
+<AnimalGrid />
+
+@if (selectedAnimals == null || selectedAnimals.Count == 0)
+{
+    <p>No animals selected.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Animal ID</th>
+                <th>Name</th>
+                <th>Breed</th>
+                <th>Birth Date</th>
+                <th>Sex</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var animal in selectedAnimals)
+            {
+                <tr>
+                    <td>@animal.AnimalId</td>
+                    <td>@animal.Name</td>
+                    <td>@animal.Breed</td>
+                    <td>@animal.BirthDate.ToShortDateString()</td>
+                    <td>@animal.Sex</td>
+                    <td>@animal.Price.ToString("C")</td>
+                    <td>@animal.Status</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Total Purchase Amount:</td>
+                <td colspan="2">@totalPurchaseAmount.ToString("C")</td>
+            </tr>
+            <tr>
+                <td colspan="5">Discount Percentage:</td>
+                <td colspan="2">@discountPercentage.ToString("P")</td>
+            </tr>
+            <tr>
+                <td colspan="5">Shipping Amount:</td>
+                <td colspan="2">@shippingAmount.ToString("C")</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@code {
+    private List<Animal> selectedAnimals = new List<Animal>();
+    private decimal totalPurchaseAmount;
+    private decimal discountPercentage;
+    private decimal shippingAmount;
+
+    // Property to hold the grouped animals
+    private Dictionary<string, List<Animal>> GroupedAnimals { get; set; } = new Dictionary<string, List<Animal>>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        selectedAnimals = await AnimalService.GetSelectedAnimals();
+
+        // Group animals by breed
+        GroupedAnimals = selectedAnimals.GroupBy(a => a.Breed)
+            .ToDictionary(group => group.Key, group => group.ToList());
+
+        totalPurchaseAmount = selectedAnimals.Sum(a => a.Price);
+
+        if (selectedAnimals.Count > 5)
+            discountPercentage = 0.05m;
+        if (selectedAnimals.Count > 10)
+            discountPercentage += 0.03m;
+
+        shippingAmount = selectedAnimals.Count > 20 ? 0m : 1000m;
+    }
+}

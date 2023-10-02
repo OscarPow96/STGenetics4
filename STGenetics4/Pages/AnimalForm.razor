@@ -1,0 +1,82 @@
+﻿<!-- AnimalForm.razor -->
+@page "/animal-form/{AnimalId}"
+@using STGenetics.Shared.Models
+@using STGenetics.Shared.Services
+@using STGenetics4.Pages
+@inject IAnimalService AnimalService
+@inject NavigationManager Navigation
+
+<h3>Animal Form</h3>
+
+@if (animal == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div>
+        <label for="name">Name:</label>
+        <input id="name" type="text" @bind="animal.Name" />
+
+        <label for="breed">Breed:</label>
+        <input id="breed" type="text" @bind="animal.Breed" />
+
+        <label for="birthDate">Birth Date:</label>
+        <input id="birthDate" type="date" @bind="animal.BirthDate" />
+
+        <label for="sex">Sex:</label>
+        <select id="sex" @bind="animal.Sex">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="price">Price:</label>
+        <input id="price" type="number" @bind="animal.Price" step="0.01" />
+
+        <label for="status">Status:</label>
+        <select id="status" @bind="animal.Status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+
+        <button @onclick="HandleSubmit">Save</button>
+        <button @onclick="HandleDelete">Delete</button>
+    </div>
+}
+
+@code {
+    private Animal animal;
+    private int AnimalId;
+    private bool animalNotFound;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Obtén el AnimalId de la URL
+        if (int.TryParse(Navigation.ToAbsoluteUri(Navigation.Uri).Segments.Last(), out int id))
+        {
+            AnimalId = id;
+            animal = await AnimalService.GetAnimalById(AnimalId);
+
+            // Si el animal no se encontró, establece un flag
+            animalNotFound = animal == null;
+        }
+    }
+
+
+    private async Task HandleSubmit()
+    {
+        // Save the animal using the AnimalService
+        await AnimalService.SaveAnimal(animal);
+        // Redirect to animal list page after save
+        Navigation.NavigateTo("/animal-list");
+    }
+
+    private async Task HandleDelete()
+    {
+        // Delete the animal using the AnimalService
+        await AnimalService.DeleteAnimal(animal.AnimalId);
+        // Redirect to animal list page after deletion
+        Navigation.NavigateTo("/animal-list");
+    }
+}
